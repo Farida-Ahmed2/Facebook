@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="roomMateModelStoreContainer" CdmEntityContainer="DataContext">
+    <EntitySetMapping Name="comments">
+      <EntityTypeMapping TypeName="roomMateModel.comment">
+        <MappingFragment StoreEntitySet="comment">
+          <ScalarProperty Name="postID" ColumnName="postID" />
+          <ScalarProperty Name="writerID" ColumnName="writerID" />
+          <ScalarProperty Name="commentID" ColumnName="commentID" />
+          <ScalarProperty Name="content" ColumnName="content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="friends">
+      <EntityTypeMapping TypeName="roomMateModel.friend">
+        <MappingFragment StoreEntitySet="friends">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="friendID" ColumnName="friendID" />
+          <ScalarProperty Name="Friend1" ColumnName="Friend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="posts">
+      <EntityTypeMapping TypeName="roomMateModel.post">
+        <MappingFragment StoreEntitySet="posts">
+          <ScalarProperty Name="postID" ColumnName="postID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="privacyType" ColumnName="privacyType" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="numberOfLikes" ColumnName="numberOfLikes" />
+          <ScalarProperty Name="numberOfDisLikes" ColumnName="numberOfDisLikes" />
+          <ScalarProperty Name="preference" ColumnName="preference" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reacts">
+      <EntityTypeMapping TypeName="roomMateModel.react">
+        <MappingFragment StoreEntitySet="reacts">
+          <ScalarProperty Name="postID" ColumnName="postID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="typeOfReact" ColumnName="typeOfReact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="roomMateModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="emial" ColumnName="emial" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+          <ScalarProperty Name="profileImage" ColumnName="profileImage" />
+          <ScalarProperty Name="headerImage" ColumnName="headerImage" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
