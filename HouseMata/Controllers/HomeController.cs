@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HouseMata.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,11 @@ namespace HouseMata.Controllers
 {
     public class HomeController : Controller
     {
+        DataContext db = new DataContext();
+         
         public ActionResult Index()
         {
+            
             return View();
         }
 
