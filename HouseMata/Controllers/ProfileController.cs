@@ -9,33 +9,45 @@ namespace HouseMata.Controllers
 {
     public class ProfileController : Controller
     {
+        private DataContext db = new DataContext();
+
         // GET: Profile
-        DataContext db = new DataContext();
-        public ActionResult Index()
+
+        [HttpGet]
+        public ActionResult viewPosts()
         {
-            return View();
-        }
-        public ActionResult viewProfile()
-        {
-            User user = db.Users.SingleOrDefault(x => x.userID == 2);
-            return View(user);
+            if (Session["Id"] == "0" || Session["Id"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            int _x = Convert.ToInt32(Session["Id"]);
+
+            User _user = new User();
+            _user = db.Users.Find(_x);
+
+            if (_user == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            return View(_user);
         }
 
         [HttpPost]
-        public ActionResult viewProfile(FormCollection postField )
+        public ActionResult viewPosts(FormCollection postField)
         {
-            int x = Convert.ToInt32(Session["Id"]);
-            Post post = new Post();
-            post.userID = x;
-            post.content = postField["post-field"];
-            post.location = "fs";
-            post.numberOfDisLikes = 0;
-            post.numberOfLikes = 0;
-            post.preference = "fg";
-            post.privacyType = 1;
-            db.Posts.Add(post);
+            int _x = Convert.ToInt32(Session["Id"]);
+            Post _post = new Post();
+            _post.userID = _x;
+            _post.content = postField["post-field"];
+            _post.location = "fs";
+            _post.numberOfDisLikes = 0;
+            _post.numberOfLikes = 0;
+            _post.preference = "fg";
+            _post.privacyType = 1;
+            db.Posts.Add(_post);
             db.SaveChanges();
-            return View(db.Users.SingleOrDefault(y=>y.userID==x));
+            return View(db.Users.SingleOrDefault(y=>y.userID==_x));
         }
     }
 }

@@ -7,9 +7,9 @@ using System.Web.Mvc;
 
 namespace HouseMata.Controllers
 {
-    public class HomeController : Controller
+    public class UserEditController : Controller
     {
-        DataContext db = new DataContext();
+        private DataContext db = new DataContext();
          
         public ActionResult Index()
         {

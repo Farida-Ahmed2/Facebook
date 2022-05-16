@@ -1,0 +1,49 @@
+﻿@model HouseMata.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+</head>
+<div>
+    <div style="margin-top:100px">
+        <div style="margin-left:200px">
+            <div>
+                @Html.ValidationSummary()
+            </div>
+            <fieldset style="width:500px;">
+                <legend>Login Form</legend>
+                @using (Html.BeginForm())
+                {
+                    <table>
+                        <tr>
+                            <td>@Html.LabelFor(c => c.Username, "Username:")</td>
+                            <td></td>
+                            <td>@Html.TextBoxFor(c => c.Username)</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(c => c.Password, "Password:")</td>
+                            <td></td>
+                            <td>@Html.PasswordFor(c => c.Password)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <br />
+                                <div class="col-md-offset-1 col-md-3">
+                                    <input type="submit" value="Login" class="btn btn-default" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </fieldset>
+            <br />
+            <div>
+                @Html.ActionLink("Create Account", "SignUp")
+            </div>
+        </div>
+    </div>
+</div>
+

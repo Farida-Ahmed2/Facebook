@@ -1,0 +1,95 @@
+﻿@model HouseMata.ViewModels.SignUpViewModel
+@{
+                /**/
+
+                ViewBag.Title = "SignUp";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+</head>
+<div>
+    <div style="margin-top:80px">
+        <div style="margin-left:200px">
+            <div>
+                @Html.ValidationSummary()
+            </div>
+            <fieldset style="width:550px;">
+                <legend>SignUp Form</legend>
+                @using (Html.BeginForm())
+                {
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.ProfileImage, "Profile Image:")</td>
+                        <td></td>
+                        <td><input type="file" name="ProfileImage" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.FirstName, "FirstName:")</td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(c => c.FirstName)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.LastName, "LastName:")</td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(c => c.LastName)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Country, "Country:")</td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(c => c.Country)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.City, "City:")</td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(c => c.City)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Phone, "PhoneNo.:")</td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(c => c.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Email, "Email:")</td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(c => c.Email)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Status, "Status:")</td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(c => c.Status)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.HeaderImage, "Header Image:")</td>
+                        <td></td>
+                        <td><input type="file" name="HeaderImage" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Password, "Password:")</td>
+                        <td></td>
+                        <td>@Html.PasswordFor(c => c.Password)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.ConfirmPassword, "ConfirmPassword:")</td>
+                        <td></td>
+                        <td>@Html.PasswordFor(c => c.ConfirmPassword)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <br />
+                            <input type="submit" value="SignUp" />
+                            <input type="reset" value="Reset" />
+                        </td>
+                    </tr>
+                </table>
+                }
+            </fieldset>
+            <br />
+            <div>
+                @Html.ActionLink("Go_Back to Login", "Login")
+            </div>
+        </div>
+    </div>
+</div>
+

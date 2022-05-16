@@ -1,7 +1,7 @@
-﻿@model HouseMata.Models.User 
+﻿@model HouseMata.Models.User
 @using HouseMata.Models;
 @{
-    ViewBag.Title = "viewProfile";
+    ViewBag.Title = "viewPosts";
 }
 
 <html>
@@ -17,6 +17,7 @@
             border-radius: .25rem;
             margin-bottom: 1.5rem
         }
+
             .post-editor .post-field {
                 width: 100%;
                 height: 120px;
@@ -32,7 +33,7 @@
                     outline: none
                 }
 
-        
+
 
         /*end post css*/
         body {
@@ -703,7 +704,7 @@
                             <div class="profile-header-content">
                                 <!-- BEGIN profile-header-img -->
                                 <div class="profile-header-img">
-                                    <img src="~/Images/me.jpg" alt="">
+                                    <img src="@Model.profileImage" alt="">
                                 </div>
                                 <!-- END profile-header-img -->
                                 <!-- BEGIN profile-header-info -->
@@ -732,14 +733,14 @@
                     <div class="post-editor">
                         <form method="post">
                             <textarea name="post-field" id="post-field" class="post-field" placeholder="Write Something Cool!"></textarea>
-                            @{ 
+                            @{
                                 Session["Id"] = Model.userID;
                             }
                             <div class="d-flex">
                                 <button class="btn btn-success px-4 py-1">Post</button>
                             </div>
                         </form>
-                        
+
                     </div>
                     <!-- end.post-editor -->
 
@@ -755,7 +756,7 @@
 
                         @foreach (Post post in posts)
                         {
-                            DataContext db = new DataContext();
+                            <!--  DataContext db = new DataContext(); -->
 
                             <!-- begin profile-content -->
 
@@ -774,7 +775,7 @@
                                                 <!-- begin timeline-body -->
                                                 <div class="timeline-body">
                                                     <div class="timeline-header">
-                                                        <span class="userimage"><img src="~/Images/@Model.profileImage" alt=""></span>
+                                                        <span class="userimage"><img src="@Model.profileImage" alt=""></span>
                                                         <span class="username"><a href="javascript:;">@Model.firstName @Model.lastName</a> <small></small></span>
 
                                                     </div>
@@ -784,44 +785,76 @@
                                                         </p>
                                                     </div>
                                                     <div class="timeline-likes">
-                                                        <div class="stats-right">
-                                                            <span class="stats-text">259 Shares</span>
-                                                            <span class="stats-text">21 Comments</span>
-                                                        </div>
                                                         <div class="stats">
                                                             <span class="fa-stack fa-fw stats-icon">
-                                                                <i class="fa fa-circle fa-stack-2x text-danger"></i>
-                                                                <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
-                                                            </span>
-                                                            <span class="fa-stack fa-fw stats-icon">
-                                                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                                <i class="fa fa-circle fa-stack-2x text-primary">
+                                                                    <h5>@post.Reacts.Where(m => m.typeOfReact == 1).ToList().Count</h5>
+                                                                </i>
                                                                 <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
                                                             </span>
-                                                            <span class="stats-total">@post.numberOfLikes</span>
+                                                            <div>
+                                                                <span class="fa-stack fa-fw stats-icon">
+                                                                    <i class="fa fa-circle fa-stack-2x text-danger">
+                                                                        <h5>@post.Reacts.Where(m => m.typeOfReact == 0).ToList().Count</h5>
+                                                                    </i>
+                                                                    <i class="fa fa-thumbs-down fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <br /><br />
                                                     <div class="timeline-footer">
-                                                        <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
-                                                        <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
-                                                        <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                                        @using (Html.BeginForm("viewReacts", "React", FormMethod.Post))
+                                                        {
+                                                            <input type="hidden" name="_postID" value="@post.postID">
+                                                            <span>
+                                                                <a class="m-r-15 text-inverse-lighter">
+                                                                    <input type="hidden" name="_reaction" value="1">
+                                                                    <i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i>
+                                                                    <input class="m-r-15 text-inverse-lighter" type="submit" value="Like">
+                                                                </a>
+                                                            </span>
+                                                        }
+                                                        <br />
+                                                        @using (Html.BeginForm("viewReacts", "React", FormMethod.Post))
+                                                        {
+                                                            <input type="hidden" name="_postID" value="@post.postID">
+                                                            <span>
+                                                                <a class="m-r-15 text-inverse-lighter">
+                                                                    <input type="hidden" name="_reaction" value="0">
+                                                                    <i class="fa fa-thumbs-down fa-fw fa-lg m-r-3"></i>
+                                                                    <input class="m-r-15 text-inverse-lighter" type="submit" value="Dislike">
+                                                                </a>
+                                                            </span>
+                                                        }
                                                     </div>
+                                                    <br />
                                                     <div class="timeline-comment-box">
-                                                        <div class="user"><img src="~/Images/@Model.profileImage"></div>
-                                                        <div class="input">
-                                                            <form action="">
+                                                        <div class="post-comment">
+                                                            @{foreach (var comment in post.Comments.ToList())
+                                                                {
+                                                                    <div class="user"><img src="~/Images/@Model.profileImage"></div>
+                                                                    <div class="content">
+                                                                        <a><h4>@comment.User.firstName @comment.User.lastName</h4></a>
+                                                                        <h5>@comment.content</h5>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            @using (Html.BeginForm("viewComments", "Comment", FormMethod.Post))
+                                                            {
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                                    <input type="text" name="_content" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                                    <input type="hidden" name="_postID" value="@post.postID">
                                                                     <span class="input-group-btn p-l-10">
-                                                                        <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
+                                                                        <input class="btn btn-primary f-s-12 rounded-corner" type="submit" value="Comment">
                                                                     </span>
                                                                 </div>
-                                                            </form>
+                                                            }
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- end timeline-body -->
+                                                    <!-- end timeline-body -->
                                             </li>
-                                            <li>
+                                        </ul>
 
                                     </div>
                                     <!-- end #profile-post tab -->
@@ -831,8 +864,6 @@
                             <!-- end profile-content -->
                         }
                     </div>
-
-
                 </div>
             </div>
         </div>
