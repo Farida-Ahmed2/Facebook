@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\UserEditController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -204,6 +205,9 @@
     <Compile Include="Models\React.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Request.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -220,6 +224,7 @@
     <Compile Include="ViewModels\PostComment.cs" />
     <Compile Include="ViewModels\PostReact.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="ViewModels\UserFriends.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -279,9 +284,13 @@
     <Content Include="Views\Profile\viewPosts.cshtml" />
     <Content Include="Views\Register\SignUp.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Friends\ShowMyFriends.cshtml" />
+    <Content Include="Views\Friends\ShowMyFriendsPage.cshtml" />
+    <Content Include="Views\Requests\viewRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Search\" />
     <Folder Include="Views\UserModel\" />
   </ItemGroup>
   <ItemGroup>

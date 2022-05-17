@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\MyUni'sDocuments\3rd year\2nd Semes\Internet Applications\Proj_\HouseMate_IbrahimYasmeen_Branch\HouseMata\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Faculty\Level Three\second Semester\SE\Project\FB\Facebook\HouseMata\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

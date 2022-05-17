@@ -22,6 +22,8 @@ namespace HouseMata.Models
             this.Friends1 = new HashSet<Friend>();
             this.Posts = new HashSet<Post>();
             this.Reacts = new HashSet<React>();
+            this.Requests = new HashSet<Request>();
+            this.Requests1 = new HashSet<Request>();
         }
     
         public int userID { get; set; }
@@ -46,5 +48,9 @@ namespace HouseMata.Models
         public virtual ICollection<Post> Posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<React> Reacts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Requests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Requests1 { get; set; }
     }
 }
