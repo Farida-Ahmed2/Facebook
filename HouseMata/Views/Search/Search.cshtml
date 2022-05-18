@@ -1,0 +1,77 @@
+﻿@model HouseMata.Models.User
+
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var id = ViewBag.id;
+}
+u
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        .searchBar {
+            height: 100%;
+            min-height: 100%;
+            margin: 0;
+            color: darkslategrey;
+            font-family: Nunito;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            background-color: cadetblue;
+        }
+
+        .table {
+            background-color: lightgray;
+        }
+
+        .table {
+            color: navy;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: large;
+        }
+
+        .button {
+            color: darkslategray;
+        }
+    </style>
+
+
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    @using (Html.BeginForm("search", "Search", FormMethod.Get))
+    {
+        <div class="radioButtom">
+            <br />
+            <h2> Search By </h2>
+            @Html.RadioButton("option", "Email") <text>Email</text>
+            @Html.RadioButton("option", "PhoneNumber") <text>PhoneNumber</text><br />
+        </div>
+
+        <div class="searchBar">
+            @Html.TextBox("search") <input type="submit" name="search" value="Search" />
+        </div>
+
+    }
+        <div class="table">
+
+            @Html.DisplayFor(modelItem => Model.firstName)
+            <br />
+            <input type="button" value="Go To Profile" onclick="location.href='@Url.Action("viewPosts", "Profile", Session["Id"] = Model.userID )'" />
+
+        </div>
+
+
+
+
+
+
+
+
+</body>
+</html>

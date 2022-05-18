@@ -24,16 +24,12 @@ namespace HouseMata.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-
-        internal object Include(Func<object, object> p)
-        {
-            throw new NotImplementedException();
-        }
-
+    
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<React> Reacts { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

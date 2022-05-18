@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <link rel="stylesheet" type="text/css" href="~/PageAssets/css/StyleSheet1.css">
+    <div class="container bootstrap snippets bootdey">
+        <hr>
+        <ol class="breadcrumb">
+            <li><a href="#">Page name</a></li>
+            <li><a href="#">Search Results</a></li>
+            <li class="pull-right"><a href="" class="text-muted"><i class="fa fa-refresh"></i></a></li>
+        </ol>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="well search-result">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button">
+                                <i class="glyphicon glyphicon-search"></i>
+                                Search
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <br />
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">My Requests</h2><br />
+                @RenderBody()
+
+</body>
+</html>

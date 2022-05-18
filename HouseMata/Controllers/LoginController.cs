@@ -12,7 +12,7 @@ namespace HouseMata.Controllers
     public class LoginController : Controller
     {
         private ILoginService service = null;
-
+        
         public LoginController(ILoginService _service)
         {
             service = _service;
@@ -22,7 +22,7 @@ namespace HouseMata.Controllers
 
         public ActionResult Login()
         {
-            Session["Id"] = "0";
+            Session["Id"] = null ;
             return View();
         }
 
@@ -34,7 +34,8 @@ namespace HouseMata.Controllers
                 User _user = service.IsValidUser(_model);
                 if (_user == null)
                     return View();
-                Session["Id"] = _user.userID.ToString();
+                Session["uId"] = _user.userID.ToString();
+                int id = _user.userID;
                 return RedirectToAction("viewPosts", "Profile");
             }
             return View();
