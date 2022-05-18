@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="roomMateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="commentID" />
+    </Key>
+    <Property Name="postID" Type="int" />
+    <Property Name="writerID" Type="int" />
+    <Property Name="commentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="content" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Friends">
+    <Key>
+      <PropertyRef Name="userID" />
+      <PropertyRef Name="friendID" />
+    </Key>
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="friendID" Type="int" Nullable="false" />
+    <Property Name="FriendShip" Type="int" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="postID" />
+    </Key>
+    <Property Name="postID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" />
+    <Property Name="privacyType" Type="int" />
+    <Property Name="content" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="numberOfLikes" Type="int" />
+    <Property Name="numberOfDisLikes" Type="int" />
+    <Property Name="preference" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reacts">
+    <Key>
+      <PropertyRef Name="postID" />
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="postID" Type="int" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="typeOfReact" Type="int" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="Sender_ID" />
+      <PropertyRef Name="Receiver_ID" />
+    </Key>
+    <Property Name="Req_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sender_ID" Type="int" Nullable="false" />
+    <Property Name="Receiver_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="profileImage" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="headerImage" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="12" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Comments__postID__3F466844">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="postID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="postID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__writer__403A8C7D">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="writerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Friends__friendI__440B1D61">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Friends">
+        <PropertyRef Name="friendID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Friends__userID__4316F928">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Friends">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Posts__userID__38996AB5">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Posts" Type="Self.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Posts">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reacts__postID__3B75D760">
+    <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+    <End Role="Reacts" Type="Self.Reacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="postID" />
+      </Principal>
+      <Dependent Role="Reacts">
+        <PropertyRef Name="postID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reacts__userID__3C69FB99">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Reacts" Type="Self.Reacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Reacts">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="rec_fk">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="Receiver_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="send_fk">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="Sender_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="roomMateModelStoreContainer">
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reacts" EntityType="Self.Reacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Comments__postID__3F466844" Association="Self.FK__Comments__postID__3F466844">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__writer__403A8C7D" Association="Self.FK__Comments__writer__403A8C7D">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Friends__friendI__440B1D61" Association="Self.FK__Friends__friendI__440B1D61">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Friends" EntitySet="Friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Friends__userID__4316F928" Association="Self.FK__Friends__userID__4316F928">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Friends" EntitySet="Friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Posts__userID__38996AB5" Association="Self.FK__Posts__userID__38996AB5">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Posts" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reacts__postID__3B75D760" Association="Self.FK__Reacts__postID__3B75D760">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Reacts" EntitySet="Reacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reacts__userID__3C69FB99" Association="Self.FK__Reacts__userID__3C69FB99">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Reacts" EntitySet="Reacts" />
+    </AssociationSet>
+    <AssociationSet Name="rec_fk" Association="Self.rec_fk">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="send_fk" Association="Self.send_fk">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

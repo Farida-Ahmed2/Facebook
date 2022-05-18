@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="roomMateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="commentID" />
+    </Key>
+    <Property Name="postID" Type="Int32" />
+    <Property Name="writerID" Type="Int32" />
+    <Property Name="commentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Post" Relationship="Self.FK__Comments__postID__3F466844" FromRole="Comments" ToRole="Posts" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Comments__writer__403A8C7D" FromRole="Comments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Friend">
+    <Key>
+      <PropertyRef Name="userID" />
+      <PropertyRef Name="friendID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="friendID" Type="Int32" Nullable="false" />
+    <Property Name="FriendShip" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Friends__friendI__440B1D61" FromRole="Friends" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK__Friends__userID__4316F928" FromRole="Friends" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="postID" />
+    </Key>
+    <Property Name="postID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" />
+    <Property Name="privacyType" Type="Int32" />
+    <Property Name="content" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numberOfLikes" Type="Int32" />
+    <Property Name="numberOfDisLikes" Type="Int32" />
+    <Property Name="preference" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__postID__3F466844" FromRole="Posts" ToRole="Comments" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Posts__userID__38996AB5" FromRole="Posts" ToRole="Users" />
+    <NavigationProperty Name="Reacts" Relationship="Self.FK__Reacts__postID__3B75D760" FromRole="Posts" ToRole="Reacts" />
+  </EntityType>
+  <EntityType Name="React">
+    <Key>
+      <PropertyRef Name="postID" />
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="postID" Type="Int32" Nullable="false" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="typeOfReact" Type="Int32" />
+    <NavigationProperty Name="Post" Relationship="Self.FK__Reacts__postID__3B75D760" FromRole="Reacts" ToRole="Posts" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Reacts__userID__3C69FB99" FromRole="Reacts" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Sender_ID" />
+      <PropertyRef Name="Receiver_ID" />
+    </Key>
+    <Property Name="Req_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sender_ID" Type="Int32" Nullable="false" />
+    <Property Name="Receiver_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.rec_fk" FromRole="Requests" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.send_fk" FromRole="Requests" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userID" />
+    </Key>
+    <Property Name="userID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="userStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="profileImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="headerImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__writer__403A8C7D" FromRole="Users" ToRole="Comments" />
+    <NavigationProperty Name="Friends" Relationship="Self.FK__Friends__friendI__440B1D61" FromRole="Users" ToRole="Friends" />
+    <NavigationProperty Name="Friends1" Relationship="Self.FK__Friends__userID__4316F928" FromRole="Users" ToRole="Friends" />
+    <NavigationProperty Name="Posts" Relationship="Self.FK__Posts__userID__38996AB5" FromRole="Users" ToRole="Posts" />
+    <NavigationProperty Name="Reacts" Relationship="Self.FK__Reacts__userID__3C69FB99" FromRole="Users" ToRole="Reacts" />
+    <NavigationProperty Name="Requests" Relationship="Self.rec_fk" FromRole="Users" ToRole="Requests" />
+    <NavigationProperty Name="Requests1" Relationship="Self.send_fk" FromRole="Users" ToRole="Requests" />
+  </EntityType>
+  <Association Name="FK__Comments__postID__3F466844">
+    <End Role="Posts" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="postID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="postID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__writer__403A8C7D">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="writerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Friends__friendI__440B1D61">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Friends" Type="Self.Friend" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Friends">
+        <PropertyRef Name="friendID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Friends__userID__4316F928">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Friends" Type="Self.Friend" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Friends">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Posts__userID__38996AB5">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Posts" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Posts">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reacts__postID__3B75D760">
+    <End Role="Posts" Type="Self.Post" Multiplicity="1" />
+    <End Role="Reacts" Type="Self.React" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Posts">
+        <PropertyRef Name="postID" />
+      </Principal>
+      <Dependent Role="Reacts">
+        <PropertyRef Name="postID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reacts__userID__3C69FB99">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Reacts" Type="Self.React" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Reacts">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="rec_fk">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="Receiver_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="send_fk">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userID" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="Sender_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Friends" EntityType="Self.Friend" />
+    <EntitySet Name="Posts" EntityType="Self.Post" />
+    <EntitySet Name="Reacts" EntityType="Self.React" />
+    <EntitySet Name="Requests" EntityType="Self.Request" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Comments__postID__3F466844" Association="Self.FK__Comments__postID__3F466844">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__writer__403A8C7D" Association="Self.FK__Comments__writer__403A8C7D">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Friends__friendI__440B1D61" Association="Self.FK__Friends__friendI__440B1D61">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Friends" EntitySet="Friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Friends__userID__4316F928" Association="Self.FK__Friends__userID__4316F928">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Friends" EntitySet="Friends" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Posts__userID__38996AB5" Association="Self.FK__Posts__userID__38996AB5">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Posts" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reacts__postID__3B75D760" Association="Self.FK__Reacts__postID__3B75D760">
+      <End Role="Posts" EntitySet="Posts" />
+      <End Role="Reacts" EntitySet="Reacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reacts__userID__3C69FB99" Association="Self.FK__Reacts__userID__3C69FB99">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Reacts" EntitySet="Reacts" />
+    </AssociationSet>
+    <AssociationSet Name="rec_fk" Association="Self.rec_fk">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+    <AssociationSet Name="send_fk" Association="Self.send_fk">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
