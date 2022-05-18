@@ -1,4 +1,9 @@
 ﻿@model HouseMata.Models.User
+
+@{
+    Layout = null;
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +28,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Profile", "viewPosts", "Profile")</li>
                     <li>@Html.ActionLink("People", "About", "Home")</li>
-                    <li>@Html.ActionLink("MyRequests", "viewRequest", "Requests", new { @id = Session["uId"] } , null)</li>
+                    <li>@Html.ActionLink("Friend Requests", "viewRequest", "Requests")</li>
                 </ul>
             </div>
         </div>

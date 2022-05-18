@@ -16,13 +16,13 @@
             </div>
             <fieldset style="width:550px;">
                 <legend>SignUp Form</legend>
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("SignUp","Register",null,FormMethod.Post, new { enctype ="multipart/form-data"}))
                 {
                 <table>
                     <tr>
                         <td>@Html.LabelFor(c => c.ProfileImage, "Profile Image:")</td>
                         <td></td>
-                        <td><input type="file" name="ProfileImage" class="form-control" /></td>
+                        <td><input id="file" type="file" name="ProfileImage" class="form-control" /></td>
                     </tr>
                     <tr>
                         <td>@Html.LabelFor(c => c.FirstName, "FirstName:")</td>

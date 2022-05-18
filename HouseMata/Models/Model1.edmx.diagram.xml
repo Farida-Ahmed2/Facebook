@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d86de58eeaeb4eb59911bf499e82d3dd" Name="Diagram1">
+      <Diagram DiagramId="874efd0fcf62499aae37b1d643bfd22f" Name="Diagram1">
         <EntityTypeShape EntityType="roomMateModel.Comment" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="roomMateModel.Friend" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="roomMateModel.Post" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />

@@ -26,23 +26,31 @@ namespace HouseMata.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(SignUpViewModel _model)
+        public ActionResult SignUp(SignUpViewModel _model , HttpPostedFileBase ProfileImage)
         {
             if (ModelState.IsValid)
             {
+                if(ProfileImage != null)
+                {
+                    string pic = System.IO.Path.GetFileName(ProfileImage.FileName);
+                    string path = System.IO.Path.Combine(Server.MapPath("~/Images/profile/"),pic);
+                    ProfileImage.SaveAs(path);
+                    _model.ProfileImage = pic;
+                }
+
                 service.SaveUserToDB(_model);
                 return RedirectToAction("viewPosts", "Profile");
             }
             return View(_model);
         }
 
-        public string change_Image_Path(HttpPostedFileBase _profileImage)
+        /*public string change_Image_Path(HttpPostedFileBase _profileImage)
         {
             string _fileName = Path.GetFileName(_profileImage.FileName);
             string _path = Path.Combine(Server.MapPath("~/Images"), _fileName);
             _profileImage.SaveAs(_path);
             return _fileName;
-        }
+        }*/
 
         public ActionResult Login()
         {
