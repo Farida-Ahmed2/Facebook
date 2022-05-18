@@ -23,11 +23,11 @@ namespace HouseMata.ViewModels
         public string City { get; set; }
 
         [Required(ErrorMessage = "Required  !")]
-        [StringLength(12, ErrorMessage = "Phone Length Exceeded  (Only 12 chars Allowed)!")]
+        //[StringLength(12, ErrorMessage = "Phone Length Exceeded  (Only 12 chars Allowed)!")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Required  !")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address !")]
+        //[EmailAddress(ErrorMessage = "Invalid Email Address !")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Required  !")]

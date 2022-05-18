@@ -1,0 +1,31 @@
+﻿@model IEnumerable<HouseMata.Models.Request>
+
+@{
+    ViewBag.Title = "viewRequest";
+    Layout = "~/Views/Shared/_View.cshtml";
+    var ID = ViewBag.ID;
+}
+
+
+@foreach (var item in Model)
+{
+
+
+
+    <div style="padding-left:150px;display: block;margin: auto;background-color: white;width:1100px;height: 250px;box-shadow:0 0 5px black; position:relative;">
+
+        <img style=" position: absolute;width: 50%;width:150px;left:100px;top: 45px; border-radius:50%;box-shadow:0 0 5px black;" class="masthead-avatar mb-5" src="~/PageAssets/assets/img/avataaars.svg" alt="..." />
+        <h3 style=" padding-top: 110px;  padding-right: 30px;  padding-bottom: 50px;  padding-left: 200px;">
+            @Html.DisplayFor(modelItem => item.User1.firstName)
+        </h3>
+        <div class="col-md-6 col-lg-4 mb-5" style=" width: 100%;width:150px;left:550px;top: -90px; font-size: 25px">
+            <input type="button" value="✔" onclick="location.href='@Url.Action("AcceptRequest", "Requests" ,  new { SenderID = item.User1.userID , ReceiverID = ID } )'" />
+        </div>
+        <div class="col-md-6 col-lg-4 mb-5" style=" width: 100%;width:150px;left:470px;top: -90px; font-size: 25px">
+            <input type="button" value="✖" onclick="location.href='@Url.Action("RejectRequest", "Requests" ,  new { SenderID = item.User1.userID , ReceiverID = ID } )'" />
+        </div>
+    </div>
+
+}
+
+
