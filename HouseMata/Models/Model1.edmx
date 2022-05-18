@@ -45,7 +45,7 @@
           <Property Name="userID" Type="int" Nullable="false" />
           <Property Name="typeOfReact" Type="int" />
         </EntityType>
-        <EntityType Name="Requests">
+        <EntityType Name="Request">
           <Key>
             <PropertyRef Name="Sender_ID" />
             <PropertyRef Name="Receiver_ID" />
@@ -156,24 +156,24 @@
         </Association>
         <Association Name="rec_fk">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="userID" />
             </Principal>
-            <Dependent Role="Requests">
+            <Dependent Role="Request">
               <PropertyRef Name="Receiver_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="send_fk">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="userID" />
             </Principal>
-            <Dependent Role="Requests">
+            <Dependent Role="Request">
               <PropertyRef Name="Sender_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -183,7 +183,7 @@
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reacts" EntityType="Self.Reacts" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Comments__postID__3F466844" Association="Self.FK__Comments__postID__3F466844">
             <End Role="Posts" EntitySet="Posts" />
@@ -215,11 +215,11 @@
           </AssociationSet>
           <AssociationSet Name="rec_fk" Association="Self.rec_fk">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Request" EntitySet="Request" />
           </AssociationSet>
           <AssociationSet Name="send_fk" Association="Self.send_fk">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Request" EntitySet="Request" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -284,8 +284,8 @@
           <Property Name="Req_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Sender_ID" Type="Int32" Nullable="false" />
           <Property Name="Receiver_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.rec_fk" FromRole="Requests" ToRole="Users" />
-          <NavigationProperty Name="User1" Relationship="Self.send_fk" FromRole="Requests" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.rec_fk" FromRole="Request" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.send_fk" FromRole="Request" ToRole="Users" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -307,8 +307,8 @@
           <NavigationProperty Name="Friends1" Relationship="Self.FK__Friends__userID__4316F928" FromRole="Users" ToRole="Friends" />
           <NavigationProperty Name="Posts" Relationship="Self.FK__Posts__userID__38996AB5" FromRole="Users" ToRole="Posts" />
           <NavigationProperty Name="Reacts" Relationship="Self.FK__Reacts__userID__3C69FB99" FromRole="Users" ToRole="Reacts" />
-          <NavigationProperty Name="Requests" Relationship="Self.rec_fk" FromRole="Users" ToRole="Requests" />
-          <NavigationProperty Name="Requests1" Relationship="Self.send_fk" FromRole="Users" ToRole="Requests" />
+          <NavigationProperty Name="Requests" Relationship="Self.rec_fk" FromRole="Users" ToRole="Request" />
+          <NavigationProperty Name="Requests1" Relationship="Self.send_fk" FromRole="Users" ToRole="Request" />
         </EntityType>
         <Association Name="FK__Comments__postID__3F466844">
           <End Role="Posts" Type="Self.Post" Multiplicity="0..1" />
@@ -396,24 +396,24 @@
         </Association>
         <Association Name="rec_fk">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="userID" />
             </Principal>
-            <Dependent Role="Requests">
+            <Dependent Role="Request">
               <PropertyRef Name="Receiver_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="send_fk">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Requests" Type="Self.Request" Multiplicity="*" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="userID" />
             </Principal>
-            <Dependent Role="Requests">
+            <Dependent Role="Request">
               <PropertyRef Name="Sender_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -455,11 +455,11 @@
           </AssociationSet>
           <AssociationSet Name="rec_fk" Association="Self.rec_fk">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
           <AssociationSet Name="send_fk" Association="Self.send_fk">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -512,7 +512,7 @@
           </EntitySetMapping>
           <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="roomMateModel.Request">
-              <MappingFragment StoreEntitySet="Requests">
+              <MappingFragment StoreEntitySet="Request">
                 <ScalarProperty Name="Req_ID" ColumnName="Req_ID" />
                 <ScalarProperty Name="Sender_ID" ColumnName="Sender_ID" />
                 <ScalarProperty Name="Receiver_ID" ColumnName="Receiver_ID" />
@@ -557,24 +557,6 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams>
-      <Diagram DiagramId="5bcbee2335fa49c7b8dd030d5855c6f2" Name="Diagram1">
-        <EntityTypeShape EntityType="roomMateModel.Comment" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="roomMateModel.Friend" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="roomMateModel.Post" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="roomMateModel.React" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="roomMateModel.Request" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="roomMateModel.User" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <AssociationConnector Association="roomMateModel.FK__Comments__postID__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.FK__Comments__writer__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.FK__Friends__friendI__440B1D61" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.FK__Friends__userID__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.FK__Posts__userID__38996AB5" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.FK__Reacts__postID__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.FK__Reacts__userID__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.rec_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="roomMateModel.send_fk" ManuallyRouted="false" />
-      </Diagram>
-    </Diagrams>
+    <Diagrams></Diagrams>
   </Designer>
 </edmx:Edmx>

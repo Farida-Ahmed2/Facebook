@@ -12,7 +12,7 @@
         <div>
             <img src="~/Images/profile/@item.User.profileImage" height="100px" />
             <h4>@item.User.firstName @item.User.lastName</h4>
-            <a href="@Url.Action("viewPosts", "Profile", Session["Id"] = item.User.userID )">View Profile</a>
+            <a href="@Url.Action("ShowMyFriendsPage", "Friends", new { id = @item.friendID } )">View Profile</a>
         </div>
     }
 

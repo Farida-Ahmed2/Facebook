@@ -701,7 +701,7 @@
                         <div class="profile-header">
                             <!-- BEGIN profile-header-cover -->
                             <div class="profile-header-cover"></div>
-
+                                
                             <!-- END profile-header-cover -->
                             <!-- BEGIN profile-header-content -->
                             <div class="profile-header-content">
@@ -722,7 +722,7 @@
                             <!-- BEGIN profile-header-tab -->
                             <ul class="profile-header-tab nav nav-tabs">
                                 <li class="nav-item"><a href="#profile-post" class="nav-link active show" data-toggle="tab">POSTS</a></li>
-                                <li class="nav-item"><a href="@Url.Action("viewEditDetails", "UserEdit",Model.userID)" class="btn btn-sm btn-info mb-2">Edit Profile</a></li>
+                                <li class="nav-item"><a href="#profile-about" class="nav-link" data-toggle="tab">ABOUT</a></li>
                                 <li class="nav-item"><a href="#profile-photos" class="nav-link" data-toggle="tab">PHOTOS</a></li>
                                 <li class="nav-item"><a href="#profile-videos" class="nav-link" data-toggle="tab">VIDEOS</a></li>
                                 <li class="nav-item"><a href="@Url.Action("ShowMyFriends", "Friends", new { id = Model.userID })">FRIENDS</a></li>
@@ -746,10 +746,7 @@
 
                     </div>
                     <!-- end.post-editor -->
-                    <div class="tab-pane fade active show btn btn-sm btn-info mb-2" id="#profile-edit">
 
-                        @Html.ActionLink("viewEditDetails", "UserEdit")
-                    </div>
                     <div class="tab-pane fade active show" id="profile-post">
 
                         @{
@@ -814,51 +811,51 @@
                                                         </div>
                                                     </div>
                                                     <br /><br />
-                                                    <div class="timeline-footer">
-                                                        @using (Html.BeginForm("viewReacts", "React", FormMethod.Post))
-                                                        {
-                                                            <input type="hidden" name="_postID" value="@post.postID">
-                                                            <span>
-                                                                <a class="m-r-15 text-inverse-lighter">
-                                                                    <input type="hidden" name="_reaction" value="1">
-                                                                    <i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i>
-                                                                    <input class="m-r-15 text-inverse-lighter" type="submit" value="Like">
-                                                                </a>
-                                                            </span>
-                                                        }
+                                                          <div class="timeline-footer">
+                                                              @using (Html.BeginForm("viewReacts", "React", FormMethod.Post))
+                                                              {
+                                                                  <input type="hidden" name="_postID" value="@post.postID">
+                                                                  <span>
+                                                                      <a class="m-r-15 text-inverse-lighter">
+                                                                          <input type="hidden" name="_reaction" value="1">
+                                                                          <i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i>
+                                                                          <input class="m-r-15 text-inverse-lighter" type="submit" value="Like">
+                                                                      </a>
+                                                                  </span>
+                                                              }
 
-                                                        @using (Html.BeginForm("viewReacts", "React", FormMethod.Post))
-                                                        {
-                                                            <input type="hidden" name="_postID" value="@post.postID">
-                                                            <span>
-                                                                <a class="m-r-15 text-inverse-lighter">
-                                                                    <input type="hidden" name="_reaction" value="0">
-                                                                    <i class="fa fa-thumbs-down fa-fw fa-lg m-r-3"></i>
-                                                                    <input class="m-r-15 text-inverse-lighter" type="submit" value="Dislike">
-                                                                </a>
-                                                            </span>
-                                                        }
-                                                        <br />
-                                                        <!--edit privacry of post -->
-                                                        @using (Html.BeginForm("Edit", "EditPostPivacy", FormMethod.Post))
-                                                        {
-                                                            <input type="hidden" name="postID" value="@post.postID">
-                                                            <input type="hidden" name="userID" value="@post.userID">
-                                                            <input class="m-r-15 text-inverse-lighter" type="submit" value="Edit Privacy">
-                                                            <div class="postPrivacy">
-                                                                <label class=""> Privte </label>
-                                                                <div class="col-md-10">
-                                                                    <input type="radio" name="typeOfPrivacy" value="0" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="postPrivacy">
-                                                                <label class="postPrivacy"> Puplic </label>
-                                                                <div class="col-md-10">
-                                                                    <input type="radio" name="typeOfPrivacy" value="1" />
-                                                                </div>
-                                                            </div>
-                                                        }
-                                                    </div>
+                                                              @using (Html.BeginForm("viewReacts", "React", FormMethod.Post))
+                                                              {
+                                                                  <input type="hidden" name="_postID" value="@post.postID">
+                                                                  <span>
+                                                                      <a class="m-r-15 text-inverse-lighter">
+                                                                          <input type="hidden" name="_reaction" value="0">
+                                                                          <i class="fa fa-thumbs-down fa-fw fa-lg m-r-3"></i>
+                                                                          <input class="m-r-15 text-inverse-lighter" type="submit" value="Dislike">
+                                                                      </a>
+                                                                  </span>
+                                                              }
+                                                              <br />
+                                                              <!--edit privacry of post -->
+                                                              @using (Html.BeginForm("Edit", "EditPostPivacy", FormMethod.Post))
+                                                              {
+                                                                  <input type="hidden" name="postID" value="@post.postID">
+                                                                  <input type="hidden" name="userID" value="@post.userID">
+                                                                  <input class="m-r-15 text-inverse-lighter" type="submit" value="Edit Privacy">
+                                                                  <div class="postPrivacy">
+                                                                      <label class=""> Privte </label>
+                                                                      <div class="col-md-10">
+                                                                          <input type="radio" name="typeOfPrivacy" value="0"  />
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="postPrivacy">
+                                                                      <label class="postPrivacy"> Puplic </label>
+                                                                      <div class="col-md-10">
+                                                                          <input type="radio" name="typeOfPrivacy" value="1"  />
+                                                                      </div>
+                                                                  </div>
+                                                              }
+                                                          </div>
                                                     <br />
                                                     <div class="timeline-comment-box">
                                                         <div class="post-comment">
