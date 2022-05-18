@@ -1,0 +1,95 @@
+﻿@model HouseMata.Models.User
+@{
+    ViewBag.Title = "viewEditDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>viewEditDetails</h2>
+<head>
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+</head>
+
+<div>
+    <div style="margin-top:80px">
+        <div style="margin-left:200px">
+            <div>
+                @Html.ValidationSummary()
+            </div>
+            <fieldset style="width:550px;">
+                <legend>Edit Form</legend>
+                @using (Html.BeginForm())
+                {
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(c => c.profileImage, "Profile Image:")</td>
+                    <td></td>
+                    <td><input type="file" name="profileImage" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.firstName, "FirstName:")</td>
+                    <td></td>
+
+                    <td>@Html.TextBoxFor(c => c.firstName)</td>
+
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.lastName, "LastName:")</td>
+                    <td></td>
+                    <td>@Html.TextBoxFor(c => c.lastName)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.country, "Country:")</td>
+                    <td></td>
+                    <td>@Html.TextBoxFor(c => c.country)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.city, "City:")</td>
+                    <td></td>
+                    <td>@Html.TextBoxFor(c => c.city)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.phone, "PhoneNo.:")</td>
+                    <td></td>
+                    <td>@Html.TextBoxFor(c => c.phone)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.email, "Email:")</td>
+                    <td></td>
+                    <td>@Html.TextBoxFor(c => c.email)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.headerImage, "Header Image:")</td>
+                    <td></td>
+                    <td><input type="file" name="headerImage" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.userPassword, "Password:")</td>
+                    <td></td>
+                    <td>@Html.PasswordFor(c => c.userPassword)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.userStatus, "Status:")</td>
+                    <td></td>
+                    <td>@Html.TextBoxFor(c => c.userStatus)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <br />
+
+                        <div class="form-group">
+                            <div class="btn btn-success px-4 py-1">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+                }
+            </fieldset>
+            <br />
+            <div>
+            </div>
+        </div>
+    </div>
+</div>
